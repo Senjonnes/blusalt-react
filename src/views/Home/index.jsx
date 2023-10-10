@@ -1,10 +1,57 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Helmet } from 'react-helmet';
 import styled from "styled-components";
 import Indicator from "../../components/Indicator";
 import Button from "../../components/Button";
 
 const Home = () => {
+  const [street, setStreet] = useState("B");
+  const [isFullCycle, setIsFullCycle] = useState(false);
+  const [isHalfCycle, setIsHalfCycle] = useState(false);
+  const [start, setStart] = useState(false);
+  const [timer, setTimer] = useState(10);
+
+  const decrementTimer = useCallback(() => {
+    setTimer((oldTimer) => oldTimer - 1)
+  }, [])
+
+  useEffect(() => {
+    if (start) {
+      if (street === "B" && isFullCycle) {
+        setIsFullCycle(false);
+        setStreet("A");
+      } else if (street === "A" && isFullCycle) {
+        setIsFullCycle(false);
+        setStreet("B");
+      }
+      if (timer <= 0 && !isHalfCycle) {
+        setTimer(5)
+        setIsHalfCycle(true);
+        return
+      } else if (timer <= 0 && isHalfCycle) {
+        setTimer(10)
+        setIsHalfCycle(false);
+        setIsFullCycle(true);
+        return
+      }
+      const timeoutFunction = setInterval(decrementTimer, 1000)
+      return () => clearInterval(timeoutFunction);
+    }
+  }, [decrementTimer, timer, start, isHalfCycle, street, isFullCycle])
+
+  const handleStart = () => {
+    setTimer(10);
+    setStart(true);
+    setIsFullCycle(false);
+    setStreet("B");
+  }
+
+  const handleReset = () => {
+    setTimer(10);
+    setIsFullCycle(false);
+    setStreet("B");
+  }
+
   return (
     <>
       <Helmet>
@@ -17,10 +64,10 @@ const Home = () => {
           <Bar horizontal={"true"}>
             <Light>
               <LeftLight>
-                <Indicator state={"GO"} />
+                <Indicator state={street === 'B' && isHalfCycle ? "PAUSE" : street === "A" ? "GO" : "STOP"} />
               </LeftLight>
               <RightLight>
-                <Indicator state={"GO"} />
+                <Indicator state={street === 'B' && isHalfCycle ? "PAUSE" : street === "A" ? "GO" : "STOP"} />
               </RightLight>
             </Light>
           </Bar>
@@ -28,16 +75,16 @@ const Home = () => {
           <Bar>
             <Light>
               <TopLight>
-                <Indicator state={"STOP"} />
+                <Indicator state={street === 'A' && isHalfCycle ? "PAUSE" : street === "B" ? "GO" : "STOP"} />
               </TopLight>
               <BottomLight>
-                <Indicator state={"STOP"} />
+                <Indicator state={street === 'A' && isHalfCycle ? "PAUSE" : street === "B" ? "GO" : "STOP"} />
               </BottomLight>
             </Light>
           </Bar>
           <Box>
-            <Button>Start</Button>
-            <Button>Reset</Button>
+            <Button onClick={handleStart}>Start</Button>
+            <Button onClick={handleReset}>Reset</Button>
           </Box>
         </Traffic>
       </Container>
