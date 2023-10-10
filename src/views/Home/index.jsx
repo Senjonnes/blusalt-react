@@ -13,23 +13,25 @@ const Home = () => {
       </Helmet>
       <Container>
         <Traffic>
+          <TopLabel>Street A</TopLabel>
           <Bar horizontal={"true"}>
             <Light>
               <LeftLight>
-                <Indicator />
+                <Indicator state={"GO"} />
               </LeftLight>
               <RightLight>
-                <Indicator />
+                <Indicator state={"GO"} />
               </RightLight>
             </Light>
           </Bar>
+          <SideLabel>Street B</SideLabel>
           <Bar>
             <Light>
               <TopLight>
-                <Indicator />
+                <Indicator state={"STOP"} />
               </TopLight>
               <BottomLight>
-                <Indicator />
+                <Indicator state={"STOP"} />
               </BottomLight>
             </Light>
           </Bar>
@@ -120,6 +122,22 @@ const RightLight = styled.div`
   position: absolute;
   right: 15%;
   width: fit-content;
+`
+
+const TopLabel = styled.p`
+  position: absolute;
+  top: 5%;
+  left: 30%;
+  font-weight: bold;
+  font-size: 18px;
+`
+
+const SideLabel = styled.p`
+  position: absolute;
+  top: 35%;
+  right: 7%;
+  font-weight: bold;
+  font-size: 18px;
 `
 
 export default Home;
