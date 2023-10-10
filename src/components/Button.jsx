@@ -19,6 +19,7 @@ const ButtonStyle = styled.button`
     border: none;
     background: #008001;
     color: #ffffff;
+    cursor: pointer;
 `
 
 export default Button;
