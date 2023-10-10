@@ -26,7 +26,7 @@ const Light = styled.div`
 const TrafficIndicator = styled.div`
     width: 36px;
     height: 36px;
-    background: ${(props) => (props.state === 'GO' ? '#008001' : props.state === 'PAUSE' ? 'yellow' : props.state === 'STOP' ? '#ff0000' : '#cd9a2d')};
+    background: ${(props) => (props.state === 'GO' ? '#008001' : props.state === 'PAUSE' ? '#ffff00' : props.state === 'STOP' ? '#ff0000' : '#cd9a2d')};
     border-radius: 50%;
 `
 

@@ -67,10 +67,10 @@ const Bar = styled.div`
   height: ${(props) => (props.horizontal && '16%') || '90%'};
   left: ${(props) => (props.horizontal && '5%') || '40%'};
   top: ${(props) => (props.horizontal && '40%') || '5%'};
-  border-bottom: ${(props) => (props.horizontal && '2px solid #ffbf38') || 'none'};
-  border-top: ${(props) => (props.horizontal && '2px solid #ffbf38') || 'none'};
-  border-left: ${(props) => (props.horizontal && 'none') || '2px solid #ffbf38'};
-  border-right: ${(props) => (props.horizontal && 'none') || '2px solid #ffbf38'};
+  border-bottom: ${(props) => (props.horizontal && '2px solid #ffff00') || 'none'};
+  border-top: ${(props) => (props.horizontal && '2px solid #ffff00') || 'none'};
+  border-left: ${(props) => (props.horizontal && 'none') || '2px solid #ffff00'};
+  border-right: ${(props) => (props.horizontal && 'none') || '2px solid #ffff00'};
 `
 
 const Light = styled.div`
